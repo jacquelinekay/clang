@@ -8260,6 +8260,7 @@ public:
   void CheckCompletedCoroutineBody(FunctionDecl *FD, Stmt *&Body);
 
   //===--------------------------------------------------------------------===//
+<<<<<<< 8f2ae425621d748fa7e5481529f51ad4ed836590
   // OpenCL extensions.
   //
 private:
@@ -8310,6 +8311,24 @@ public:
   /// emit diagnostics.
   /// \return true if type is disabled.
   bool checkOpenCLDisabledDecl(const Decl &D, const Expr &E);
+  // C++ Reflection
+  //
+  ExprResult ActOnCXXReflectExpr(SourceLocation Loc, Expr *E);
+  ExprResult ActOnCXXReflectExpr(SourceLocation Loc, TypeSourceInfo *TSI);
+  ExprResult ActOnCXXReflectExpr(SourceLocation Loc, Declarator &D);
+  ExprResult ActOnCXXReflectExpr(SourceLocation Loc, CXXScopeSpec &SS,
+                                 IdentifierInfo *II, SourceLocation IdLoc);
+  ExprResult BuildDeclReflection(SourceLocation Loc, Decl *D);
+  ExprResult BuildTypeReflection(SourceLocation Loc, QualType T);
+
+  NamespaceDecl *RequireCpp3kNamespace(SourceLocation Loc);
+  NamespaceDecl *RequireCpp3kMetaNamespace(SourceLocation Loc);
+  ClassTemplateDecl *RequireReflectionType(SourceLocation Loc,
+                                           char const *Name);
+
+  ExprResult ActOnReflectionTrait(SourceLocation KWLoc, ReflectionTrait Trait,
+                                  ArrayRef<Expr *> Args,
+                                  SourceLocation RParenLoc);
 
   //===--------------------------------------------------------------------===//
   // OpenMP directives and clauses.
